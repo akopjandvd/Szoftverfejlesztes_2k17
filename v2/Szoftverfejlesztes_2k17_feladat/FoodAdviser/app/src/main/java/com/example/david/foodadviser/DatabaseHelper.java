@@ -19,11 +19,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME= "Foods_table";
     public static final String COL_1= "Name";
     public static final String COL_2= "Recipe";
-    public static final String COL_3= "Ingredients";
-    public static final String COL_4= "Rating";
-    public static final String COL_5= "Favourite";
-    public static final String COL_6= "LastMade";
-    public static final String COL_7= "Picture";
+    // 2/a
+    
 
 
 
@@ -35,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table Foods_table (NAME TEXT PRIMARY KEY, RECIPE TEXT, INGREDIENTS TEXT, RATING REAL, FAVOURITE INTEGER, LASTMADE INTEGER, PICTURE BLOB)");
+        db.execSQL("create table Foods_table (NAME TEXT PRIMARY KEY, RECIPE TEXT)");
     }
 
     @Override
@@ -43,13 +40,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         onCreate(db);
     }
+	// 2/b
 
-    public boolean insertData(String name,String recipe,String ingredients) {
+    public boolean insertData(String name,String recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,name);
         contentValues.put(COL_2,recipe);
-        contentValues.put(COL_3,ingredients);
         long result = db.insert(TABLE_NAME,null ,contentValues);
         if(result == -1)
             return false;
@@ -64,18 +61,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData(String id,String name,String recipe,String ingredients) {
+	// 2/c
+    public boolean updateData(String id,String name,String recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,name);
         contentValues.put(COL_2,recipe);
-        contentValues.put(COL_3,ingredients);
         db.update(TABLE_NAME, contentValues, "NAME = ?",new String[] { name });
         return true;
     }
 
     public Integer deleteData (String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "name = ?",new String[] {String.valueOf(name)});
+        return db.delete(TABLE_NAME, "name = ?",new String[] {String.v)});
     }
 }
