@@ -53,7 +53,7 @@ public class Etelek_context extends Fragment {
     }
 
     private void populateListView(ListView listViewToPopulate) {
-        String[] myItems = {"egy", "ketto", "harom", "negy"};
+        String[] myItems = {"egy", "ketto", "harom", "negy", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.da_item,myItems);
 
