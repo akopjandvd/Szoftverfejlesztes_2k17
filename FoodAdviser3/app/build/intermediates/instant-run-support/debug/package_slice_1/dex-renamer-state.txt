@@ -1,0 +1,4 @@
+#Wed Dec 13 02:40:14 CET 2017
+base.0=C\:\\Users\\csikr\\Documents\\Egyetem\\FoodAdviser\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\154
+path.0=classes.dex
+renamed.0=classes.dex
