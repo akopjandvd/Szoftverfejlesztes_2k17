@@ -1,5 +1,7 @@
 package com.jelenleti.foodadviser;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,10 +18,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    static DatabaseHelper myDb;
+
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myDb = new DatabaseHelper(this);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                     return tab4;
                 default:
                     return null;
-
             }
         }
 

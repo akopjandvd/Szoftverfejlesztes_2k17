@@ -1,6 +1,7 @@
 package com.jelenleti.foodadviser;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
@@ -21,21 +24,29 @@ import java.util.List;
  */
 
 public class Etelek_context extends Fragment {
+
+
+    Button btnAdd;
+    //DatabaseHelper myDb;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.etelek, container, false);
         ListView list = (ListView)rootView.findViewById(R.id.listview1);
+        //editName = (EditText) rootView.findViewById(R.id.editText_nev);
+        //editRecipe = (EditText) root.findViewById(R.id.editText_recept);
 
-        List myList = new ArrayList();
+        btnAdd = (Button) rootView.findViewById(R.id.add);
 
-        for (int i=0;i<15;i++)
-        {
-            myList.add(i);
-        }
+        List myList =  DatabaseHelper.list;
 
-        populateListView(list);
+
+
+
+
+        populateListView(list, myList);
         registerClickCallback(list);
+        AddData();
 
         return rootView;
     }
@@ -52,13 +63,26 @@ public class Etelek_context extends Fragment {
         });
     }
 
-    private void populateListView(ListView listViewToPopulate) {
-        String[] myItems = {"egy", "ketto", "harom", "negy", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.da_item,myItems);
+
+    private void populateListView(ListView listViewToPopulate, List myList) {
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.da_item,myList);
 
         listViewToPopulate.setAdapter(adapter);
 
+    }
+
+    public void AddData() {
+        btnAdd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Etelek_context.this.getContext(), Pop.class));
+                    }
+                }
+        );
     }
 
 
